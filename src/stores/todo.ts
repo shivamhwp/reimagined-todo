@@ -51,6 +51,7 @@ export const useTodoStore = create<State & Actions>()(
         state.todo.status = status;
         state.todo.updated = new Date();
       }),
+
     setAssignedDate: (date) =>
       set((state) => {
         state.todo.assignedDate = date;

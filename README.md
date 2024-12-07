@@ -8,7 +8,9 @@
 
 [x] todo adding functionality.
 
-[ ] edit, toggling completionStatus and delete functionality.
+[x] toggling completionStatus and delete functionality.
+
+[ ] edit funcitionality
 
 [ ] frontend design
 
@@ -22,12 +24,12 @@ title, date, description, completionStatus , id
 
 [ ] Each task should display its text, completion status (completed or not), and options to edit or delete.
 
-[ ] Toggle Completion Status
+[x] Toggle Completion Status
 
-[ ] Visually differentiate completed tasks (e.g., strikethrough text).
+[x] Visually differentiate completed tasks (e.g., strikethrough text).
 
 [ ] Edit To-Do Item
 
-[ ] Delete To-Do Item
+[x] Delete To-Do Item
 
 [x] To simplify things, no authentication is required
