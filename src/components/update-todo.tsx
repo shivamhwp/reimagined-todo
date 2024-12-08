@@ -24,7 +24,6 @@ import { CompletionStatus, useTodoStore } from "@/stores/todo";
 import { useToast } from "@/hooks/use-toast";
 import { DialogClose } from "@radix-ui/react-dialog";
 
-import { redirect } from "next/navigation";
 import { db } from "@/db/db";
 
 export type ActionType = "add" | "update";
@@ -35,13 +34,6 @@ const UpdateTodo = ({ currTodo }: { currTodo: Todo }) => {
     useTodoStore();
 
   async function updateTodoFn() {
-    if (todo.title.length === 0) {
-      toast({
-        description: "Title can't be empty",
-      });
-      redirect("/");
-    }
-
     try {
       await db.todos.update(currTodo.id, {
         id: todo.id,

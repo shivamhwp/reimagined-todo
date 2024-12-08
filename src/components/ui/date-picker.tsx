@@ -43,7 +43,8 @@ export function DatePickerWithPresets({
       setDate(selectedDate);
       if (currTodo) {
         db.todos.update(currTodo.id, {
-          assignedDate: selectedDate,
+          assignedDate:
+            selectedDate === null ? currTodo.assignedDate : selectedDate,
         });
       }
     }

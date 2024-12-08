@@ -63,7 +63,7 @@ export const AddButton = () => {
   return (
     <div className="">
       <Dialog>
-        <DialogTrigger className="fixed  bottom-4 p-4 hover:cursor-pointer rounded-full shadow-sm hover:shadow-2xl bg-white transition duration-300">
+        <DialogTrigger className="fixed max-sm:right-4 bottom-4 z-50 p-4 hover:cursor-pointer rounded-full shadow-sm hover:shadow-2xl bg-white transition duration-300">
           <AddIcon />
         </DialogTrigger>
         <DialogContent>
