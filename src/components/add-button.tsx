@@ -91,11 +91,11 @@ export const AddButton = () => {
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Complete">Complete</SelectItem>
-                <SelectItem value="Incomplete">Incomplete</SelectItem>
+                <SelectItem value="complete">complete</SelectItem>
+                <SelectItem value="incomplete">incomplete</SelectItem>
               </SelectContent>
             </Select>
-            <DatePickerWithPresets />
+            <DatePickerWithPresets action="add" />
           </div>
           <DialogClose
             className="bg-black w-full text-white rounded-md py-2 hover:bg-zinc-800 font-medium  "

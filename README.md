@@ -10,7 +10,7 @@
 
 [x] toggling completionStatus and delete functionality.
 
-[ ] edit funcitionality
+[x] edit funcitionality
 
 [ ] frontend design
 
@@ -22,13 +22,13 @@ title, date, description, completionStatus , id
 
 [ ] Display To-Do List day by day (by default show today’s)
 
-[ ] Each task should display its text, completion status (completed or not), and options to edit or delete.
+[x] Each task should display its text, completion status (completed or not), and options to edit or delete.
 
 [x] Toggle Completion Status
 
 [x] Visually differentiate completed tasks (e.g., strikethrough text).
 
-[ ] Edit To-Do Item
+[x] Edit To-Do Item
 
 [x] Delete To-Do Item
 

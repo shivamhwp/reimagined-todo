@@ -20,16 +20,32 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { useTodoStore } from "@/stores/todo";
+import { Todo, useTodoStore } from "@/stores/todo";
+import { ActionType } from "../update-todo";
+import { db } from "@/db/db";
 
-export function DatePickerWithPresets() {
+export function DatePickerWithPresets({
+  action,
+  currTodo,
+}: {
+  action: ActionType;
+  currTodo?: Todo;
+}) {
   const { setAssignedDate } = useTodoStore();
   const [date, setDate] = React.useState<Date>();
 
   const handleDateSelection = (selectedDate: Date) => {
-    if (selectedDate) {
+    if (action === "add") {
       setDate(selectedDate);
       setAssignedDate(selectedDate);
+    }
+    if (action === "update") {
+      setDate(selectedDate);
+      if (currTodo) {
+        db.todos.update(currTodo.id, {
+          assignedDate: selectedDate,
+        });
+      }
     }
   };
 
@@ -49,6 +65,7 @@ export function DatePickerWithPresets() {
       </PopoverTrigger>
       <PopoverContent className="flex w-auto flex-col space-y-2 p-2">
         <Select
+          defaultValue={currTodo?.status}
           onValueChange={(value) => {
             const newDate = addDays(new Date(), parseInt(value));
             handleDateSelection(newDate);
