@@ -11,6 +11,7 @@ import {
 import * as React from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { useDayStore } from "@/stores/todo";
 
 // const year = {
 //   January: 31,
@@ -40,7 +41,7 @@ const CalendarView = () => {
 export default CalendarView;
 
 export function DateCarousel() {
-  const [selectedDay, setSelectedDay] = React.useState<number | null>(null);
+  const { selectedDay, setSelectedDay } = useDayStore();
   // const currentDay = dayjs().date;
   const daysList = Array.from({ length: daysInCurrentMonth }, (_, index) => ({
     day: index + 1,
@@ -48,6 +49,7 @@ export function DateCarousel() {
       .date(index + 1)
       .format("ddd"),
   }));
+  console.log(daysList);
 
   return (
     <Carousel
@@ -61,7 +63,9 @@ export function DateCarousel() {
           <CarouselItem key={day} className={` md:basis-1/2 lg:basis-1/5`}>
             <div className="p-1">
               <Card
-                onClick={() => setSelectedDay(day)}
+                onClick={() => {
+                  setSelectedDay(day);
+                }}
                 className={` transition duration-300 hover:cursor-pointer ${
                   day === selectedDay ? "bg-zinc-900 text-white" : ""
                 } `}

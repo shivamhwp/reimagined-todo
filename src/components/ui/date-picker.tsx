@@ -37,7 +37,7 @@ export function DatePickerWithPresets({
   const handleDateSelection = (selectedDate: Date) => {
     if (action === "add") {
       setDate(selectedDate);
-      setAssignedDate(selectedDate);
+      setAssignedDate(selectedDate === null ? new Date() : selectedDate);
     }
     if (action === "update") {
       setDate(selectedDate);

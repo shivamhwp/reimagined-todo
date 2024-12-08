@@ -14,6 +14,11 @@ export interface Todo {
   status: CompletionStatus;
 }
 
+export interface Day {
+  selectedDay: number;
+  setSelectedDay: (day: number) => void;
+}
+
 type State = {
   todo: Todo;
 };
@@ -24,6 +29,16 @@ type Actions = {
   setAssignedDate: (date: Date) => void;
   resetTodo: () => void;
 };
+
+export const useDayStore = create<Day>()(
+  immer<Day>((set) => ({
+    selectedDay: 0,
+    setSelectedDay: (day) =>
+      set((state) => {
+        state.selectedDay = day;
+      }),
+  }))
+);
 
 export const useTodoStore = create<State & Actions>()(
   immer<State & Actions>((set) => ({

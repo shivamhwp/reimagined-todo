@@ -1,4 +1,4 @@
-import AddIcon from "./ui/icons/add-icon";
+import AddIcon from "./ui/add-icon";
 import {
   Dialog,
   DialogContent,
@@ -61,9 +61,9 @@ export const AddButton = () => {
   }
 
   return (
-    <div>
+    <div className="">
       <Dialog>
-        <DialogTrigger className="fixed bottom-4 p-4 hover:cursor-pointer rounded-full shadow-sm hover:shadow-2xl bg-white transition duration-300">
+        <DialogTrigger className="fixed  bottom-4 p-4 hover:cursor-pointer rounded-full shadow-sm hover:shadow-2xl bg-white transition duration-300">
           <AddIcon />
         </DialogTrigger>
         <DialogContent>

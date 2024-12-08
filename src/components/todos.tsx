@@ -12,13 +12,19 @@ dayjs.extend(relativeTime);
 import { redirect } from "next/navigation";
 import UpdateTodo from "./update-todo";
 import { toast } from "@/hooks/use-toast";
+import { useDayStore } from "@/stores/todo";
 
 const Todos = () => {
+  const { selectedDay } = useDayStore();
   const todos = useLiveQuery(() => db.todos.toArray());
 
+  const filteredTodos = todos?.filter((todo) =>
+    dayjs(dayjs(todo.assignedDate).date()).isSame(selectedDay)
+  );
+
   return (
-    <div className="flex  items-center flex-col gap-4">
-      {todos?.map((todo) => (
+    <div className="flex  items-center flex-col gap-4 max-sm:px-3">
+      {filteredTodos?.map((todo) => (
         <div
           key={todo.id}
           className="flex flex-col gap-2 text-black bg-white p-4 w-full rounded-xl"
