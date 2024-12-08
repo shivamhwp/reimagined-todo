@@ -41,7 +41,7 @@ export default CalendarView;
 
 export function DateCarousel() {
   const [selectedDay, setSelectedDay] = React.useState<number | null>(null);
-  const currentDay = dayjs().date;
+  // const currentDay = dayjs().date;
   const daysList = Array.from({ length: daysInCurrentMonth }, (_, index) => ({
     day: index + 1,
     dayName: dayjs()
