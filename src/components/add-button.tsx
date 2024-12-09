@@ -95,7 +95,7 @@ export const AddButton = () => {
                 <SelectItem value="incomplete">incomplete</SelectItem>
               </SelectContent>
             </Select>
-            <DatePickerWithPresets action="add" />
+            <DatePickerWithPresets />
           </div>
           <DialogClose
             className="bg-black w-full text-white rounded-md py-2 hover:bg-zinc-800 font-medium  "
