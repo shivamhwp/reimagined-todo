@@ -26,8 +26,6 @@ import { DialogClose } from "@radix-ui/react-dialog";
 
 import { db } from "@/db/db";
 
-export type ActionType = "add" | "update";
-
 const UpdateTodo = ({ currTodo }: { currTodo: Todo }) => {
   const { toast } = useToast();
   const { todo, setTitle, setDescription, setStatus, resetTodo } =
@@ -37,16 +35,20 @@ const UpdateTodo = ({ currTodo }: { currTodo: Todo }) => {
     try {
       await db.todos.update(currTodo.id, {
         id: todo.id,
-        title: todo.title,
-        description: todo.description,
-        updated: todo.updated,
+        title: todo.title === "" ? currTodo.title : todo.title,
+        description:
+          todo.description === "" ? currTodo.description : todo.description,
+        updated: todo.updated === null ? currTodo.updated : todo.updated,
         status: todo.status,
-        assignedDate: todo.assignedDate,
+        assignedDate:
+          todo.assignedDate === null
+            ? currTodo.assignedDate
+            : todo.assignedDate,
       });
-      toast({ description: "The todo has been updated" });
+      toast({ description: "The todo has been updated ✅  " });
       resetTodo();
     } catch {
-      toast({ description: "Failed to edit todo" });
+      toast({ description: "Failed to edit todo ❌" });
       resetTodo();
     }
   }
@@ -64,23 +66,13 @@ const UpdateTodo = ({ currTodo }: { currTodo: Todo }) => {
           type="text"
           placeholder={currTodo.title}
           value={todo.title}
-          onChange={(e) =>
-            setTitle(
-              e.target.value.length === 0 ? currTodo.title : e.target.value
-            )
-          }
+          onChange={(e) => setTitle(e.target.value)}
         />
         <Input
           type="text"
           placeholder={currTodo.description}
           value={todo.description}
-          onChange={(e) =>
-            setDescription(
-              e.target.value.length === 0
-                ? currTodo.description
-                : e.target.value
-            )
-          }
+          onChange={(e) => setDescription(e.target.value)}
         />
         <div className="gap-4 flex">
           <Select
@@ -88,14 +80,17 @@ const UpdateTodo = ({ currTodo }: { currTodo: Todo }) => {
             onValueChange={(value) => setStatus(value as CompletionStatus)}
           >
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder={currTodo.status} />
+              <SelectValue
+                placeholder={currTodo.status}
+                defaultValue={currTodo.status}
+              />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="Complete">Complete</SelectItem>
-              <SelectItem value="Incomplete">Incomplete</SelectItem>
+              <SelectItem value="complete">complete</SelectItem>
+              <SelectItem value="incomplete">incomplete</SelectItem>
             </SelectContent>
           </Select>
-          <DatePickerWithPresets action="update" currTodo={currTodo} />
+          <DatePickerWithPresets />
         </div>
         <DialogClose
           className="bg-black w-full text-white rounded-md py-2 hover:bg-zinc-800 font-medium"
